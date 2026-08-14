@@ -12,11 +12,12 @@ MacroBook helps users keep track of what they eat, monitor their daily nutrition
 
 ### Currently Available
 
-### - User authentication
+- **User authentication**
   - Sign up
   - Log in
   - Log out
-### - User profile and nutrition goals
+    
+- **User profile and nutrition goals**
   - Name
   - Age
   - Gender
@@ -26,13 +27,15 @@ MacroBook helps users keep track of what they eat, monitor their daily nutrition
   - Target carbohydrates
   - Target protein
   - Target fat
-### - Meal tracking
+    
+- **Meal tracking**
   - Add meals
   - Record calories
   - Record carbohydrates
   - Record protein
   - Record fat
-### - Daily nutrition overview
+    
+- **Daily nutrition overview**
   - Daily calorie intake
   - Daily carbohydrate intake
   - Daily protein intake
@@ -45,24 +48,24 @@ MacroBook helps users keep track of what they eat, monitor their daily nutrition
 
 MacroBook is still being developed. Planned features include:
 
-### - Meal history
+- **Meal history**
   - View previously logged meals
   - Browse meals by date
-### - Nutrition history
+- **Nutrition history**
   - Track calorie intake over time
   - Track macros over time
   - Daily and weekly summaries
-### - Calorie deficit tracking
+- **Calorie deficit tracking**
   - Compare daily intake against maintenance calories
   - Track calorie deficit over time
   - Visualize progress through charts
-### - Progress dashboard
+- **Progress dashboard**
   - Weekly and monthly statistics
   - Macro trends
   - Calorie trends
-### - Edit and delete meals
-### - Search and filter meal history
-### - Responsive design improvements
+- **Edit and delete meals**
+- **Search and filter meal history**
+- **Responsive design improvements**
 
 ---
 
