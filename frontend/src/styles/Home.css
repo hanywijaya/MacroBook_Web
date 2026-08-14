@@ -120,9 +120,36 @@
 .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     margin-bottom: 16px;
+}
+
+.meals-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.meals-title h2 {
+    margin: 0;
+}
+
+.history-button {
+    border: none;
+    background: none;
+    padding: 0;
+
+    color: #6b371c;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.history-button:hover {
+    text-decoration: underline;
 }
 
 .section-header h2 {
