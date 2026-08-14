@@ -25,6 +25,10 @@
    HEADER
 ========================= */
 
+.history-header-left {
+   text-align: left;
+}
+
 .history-header {
     display: flex;
     align-items: flex-end;

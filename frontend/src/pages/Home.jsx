@@ -329,14 +329,16 @@ function Home() {
 
                     <div className="section-header">
 
-                        <h2>Today's Meals</h2>
+                        <div className="meals-title">
+                            <h2>Today's Meals</h2>
 
-                        <button
-                            className="history-button"
-                            onClick={() => navigate("/history")}
-                        >
-                            History
-                        </button>
+                            <button
+                                className="history-button"
+                                onClick={() => navigate("/history")}
+                            >
+                                View history →
+                            </button>
+                        </div>
 
                         <button
                             className="add-meal-button"
