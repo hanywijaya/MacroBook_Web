@@ -1,0 +1,816 @@
+/* =========================
+   AUTH / SIGNUP PAGE
+========================= */
+
+.auth-page,
+.signup-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+    box-sizing: border-box;
+
+    background: #f8f7f4;
+}
+
+
+/* =========================
+   LOGIN / AUTH CARD
+========================= */
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 42px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 35px rgba(43, 33, 28, 0.06);
+}
+
+
+/* =========================
+   AUTH HEADER
+========================= */
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo {
+    margin-bottom: 28px;
+
+    color: #5b2f13;
+
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.auth-header h1 {
+    margin: 0 0 8px;
+
+    color: #2b211c;
+
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.auth-header p {
+    margin: 0;
+
+    color: #8a817b;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   AUTH FORM
+========================= */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin: 0;
+}
+
+.auth-form label {
+    color: #3a302b;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   AUTH INPUT
+========================= */
+
+.auth-form input {
+    width: 100%;
+    height: 46px;
+
+    box-sizing: border-box;
+
+    padding: 0 14px;
+
+    border: 1px solid #ddd8d3;
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #fdfcfb;
+
+    color: #2b211c;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.auth-form input::placeholder {
+    color: #aaa29c;
+}
+
+.auth-form input:focus {
+    background: #ffffff;
+
+    border-color: #5b2f13;
+
+    box-shadow:
+        0 0 0 3px rgba(91, 47, 19, 0.08);
+}
+
+
+/* =========================
+   PASSWORD LABEL
+========================= */
+
+.password-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forgot-password {
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #5b2f13;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   AUTH BUTTON
+========================= */
+
+.auth-button {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 4px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #5b2f13;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.auth-button:hover {
+    background: #47230e;
+}
+
+.auth-button:active {
+    transform: scale(0.99);
+}
+
+.auth-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   AUTH FOOTER
+========================= */
+
+.auth-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 26px;
+
+    color: #8a817b;
+
+    font-size: 13px;
+}
+
+.auth-footer a,
+.auth-footer button {
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #5b2f13;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.auth-footer a:hover,
+.auth-footer button:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.auth-error,
+.signup-error {
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: #faf1ed;
+
+    color: #9b4b2e;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   SIGNUP / ONBOARDING
+===================================================== */
+
+.signup-page {
+    padding: 30px;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 1200px;
+    min-height: calc(100vh - 60px);
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 50px rgba(43, 33, 28, 0.08);
+}
+
+
+/* =========================
+   SIGNUP LEFT SIDE
+========================= */
+
+.signup-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 48px;
+
+    background: #5b2f13;
+
+    color: #ffffff;
+}
+
+.signup-intro .brand {
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.intro-content {
+    max-width: 340px;
+}
+
+.intro-label {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.intro-content h1 {
+    margin: 0 0 20px;
+
+    color: #ffffff;
+
+    font-size: 52px;
+    line-height: 1.05;
+    font-weight: 600;
+
+    letter-spacing: -2px;
+}
+
+.intro-content p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.intro-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+.intro-footer button {
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.intro-footer button:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   SIGNUP FORM CONTAINER
+========================= */
+
+.signup-form-container {
+    padding: 48px 55px;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+}
+
+.signup-form-header {
+    margin-bottom: 35px;
+}
+
+.step-label {
+    color: #a69d97;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.signup-form-header h2 {
+    margin: 8px 0 7px;
+
+    color: #2b211c;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    letter-spacing: -0.8px;
+}
+
+.signup-form-header p {
+    margin: 0;
+
+    color: #8a817b;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SIGNUP SECTIONS
+========================= */
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid #eee9e5;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 22px;
+}
+
+.section-number {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f1e9e4;
+    color: #5b2f13;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.section-heading h3 {
+    margin: 0 0 2px;
+
+    color: #3a302b;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: #a09a95;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   SIGNUP FORM GROUP
+========================= */
+
+.signup-form .form-group {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 17px;
+}
+
+.signup-form .form-group label {
+    color: #4a403a;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.signup-form .form-row {
+    display: flex;
+    gap: 14px;
+}
+
+
+/* =========================
+   SIGNUP INPUT
+========================= */
+
+.signup-form input {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e3ded9;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #332923;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.signup-form input::placeholder {
+    color: #b4ada8;
+}
+
+.signup-form input:focus {
+    border-color: #5b2f13;
+
+    box-shadow:
+        0 0 0 3px rgba(91, 47, 19, 0.07);
+}
+
+
+/* =========================
+   UNIT INPUT
+========================= */
+
+.unit-input {
+    position: relative;
+}
+
+.unit-input input {
+    padding-right: 45px;
+}
+
+.unit-input span {
+    position: absolute;
+
+    right: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #a09a95;
+
+    font-size: 12px;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   GENDER
+========================= */
+
+.gender-options {
+    display: flex;
+    gap: 8px;
+}
+
+.gender-option {
+    flex: 1;
+
+    cursor: pointer;
+}
+
+.gender-option input {
+    display: none;
+}
+
+.gender-option span {
+    width: 100%;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e3ded9;
+    border-radius: 10px;
+
+    color: #77706b;
+
+    font-size: 13px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.gender-option input:checked + span {
+    border-color: #5b2f13;
+
+    background: #5b2f13;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   MACRO INPUTS
+========================= */
+
+.macro-inputs {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+
+/* =========================
+   CREATE ACCOUNT BUTTON
+========================= */
+
+.create-account-button {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: #5b2f13;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.create-account-button:hover {
+    background: #47230e;
+}
+
+.create-account-button:active {
+    transform: scale(0.99);
+}
+
+.create-account-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+    margin: 13px 0 0;
+
+    color: #aaa39e;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .signup-page {
+        padding: 15px;
+    }
+
+    .signup-container {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-intro {
+        min-height: 300px;
+
+        padding: 35px;
+    }
+
+    .intro-content {
+        margin-top: 50px;
+    }
+
+    .intro-content h1 {
+        font-size: 40px;
+    }
+
+    .signup-form-container {
+        padding: 40px 35px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 24px 16px;
+    }
+
+    .auth-card {
+        padding: 32px 24px;
+
+        border-radius: 20px;
+    }
+
+    .auth-header h1 {
+        font-size: 25px;
+    }
+
+    .signup-page {
+        padding: 0;
+    }
+
+    .signup-container {
+        min-height: 100vh;
+
+        border-radius: 0;
+    }
+
+    .signup-intro {
+        min-height: 250px;
+
+        padding: 28px;
+    }
+
+    .intro-content {
+        margin-top: 35px;
+    }
+
+    .intro-content h1 {
+        font-size: 34px;
+    }
+
+    .signup-form-container {
+        padding: 35px 22px;
+    }
+
+    .signup-form .form-row {
+        flex-direction: column;
+
+        gap: 0;
+    }
+
+    .macro-inputs {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+}

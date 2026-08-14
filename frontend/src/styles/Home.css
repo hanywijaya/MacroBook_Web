@@ -1,0 +1,380 @@
+.home-page {
+    min-height: 100vh;
+    background: #f8f7f4;
+    padding: 40px 20px;
+}
+
+.home-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.home-greeting {
+    margin: 0 0 4px;
+    color: #8a817b;
+    font-size: 14px;
+}
+
+.home-header h1 {
+    margin: 0;
+    color: #2b211c;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.logout-button {
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    color: #5b2f13;
+}
+
+
+/* Calorie Card */
+
+.calorie-card {
+    padding: 28px;
+    margin-bottom: 24px;
+
+    background: white;
+    border-radius: 20px;
+
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+    margin-bottom: 20px;
+
+    color: #5b514b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.calorie-number {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+
+    margin-bottom: 18px;
+}
+
+.calorie-number strong {
+    color: #2b211c;
+    font-size: 42px;
+    font-weight: 600;
+}
+
+.calorie-number span {
+    color: #8a817b;
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+
+    overflow: hidden;
+
+    background: #eee9e5;
+    border-radius: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: #5b2f13;
+    border-radius: 10px;
+
+    transition: width 0.3s ease;
+}
+
+.remaining-calories {
+    margin: 12px 0 0;
+
+    color: #8a817b;
+    font-size: 13px;
+}
+
+
+/* Macros */
+
+.macro-section {
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    margin: 0;
+
+    color: #2b211c;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.macro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.macro-card {
+    padding: 20px;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.macro-card-header {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+
+    color: #3a302b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.macro-progress {
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    background: #eee9e5;
+    border-radius: 10px;
+}
+
+.macro-progress div {
+    height: 100%;
+
+    background: #5b2f13;
+    border-radius: 10px;
+
+    transition: width 0.3s ease;
+}
+
+.macro-card p {
+    margin: 10px 0 0;
+
+    color: #99908a;
+    font-size: 12px;
+}
+
+
+/* Meals */
+
+.meals-section {
+    margin-top: 30px;
+}
+
+.add-meal-button {
+    border: none;
+    background: transparent;
+
+    color: #5b2f13;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.empty-meals {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: white;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.empty-icon {
+    margin-bottom: 12px;
+    font-size: 32px;
+}
+
+.empty-meals h3 {
+    margin: 0 0 6px;
+
+    color: #3a302b;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.empty-meals p {
+    margin: 0 0 20px;
+
+    color: #99908a;
+    font-size: 13px;
+}
+
+.primary-button {
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #5b2f13;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+.meal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.meal-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #eee9e5;
+    border-radius: 16px;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.meal-card:hover {
+    box-shadow: 0 6px 20px rgba(43, 33, 28, 0.06);
+
+    transform: translateY(-1px);
+}
+
+.meal-info h3 {
+    margin: 0 0 5px;
+
+    color: #2b211c;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.meal-info p {
+    margin: 0;
+
+    color: #99918b;
+
+    font-size: 12px;
+}
+
+
+.meal-nutrition {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.meal-nutrition div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.meal-nutrition strong {
+    color: #3a302b;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.meal-nutrition span {
+    color: #aaa29c;
+
+    font-size: 10px;
+}
+
+
+/* Loading */
+
+.home-loading {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8f7f4;
+
+    color: #777;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    .home-page {
+        padding: 25px 16px;
+    }
+
+    .home-header h1 {
+        font-size: 25px;
+    }
+
+    .macro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calorie-number strong {
+        font-size: 36px;
+    }
+
+    .meal-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .meal-nutrition {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .meal-nutrition div {
+        align-items: flex-start;
+    }
+}
+

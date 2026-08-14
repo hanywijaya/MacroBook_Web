@@ -1,0 +1,384 @@
+/* =========================
+   ADD MEAL PAGE
+========================= */
+
+.add-meal-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+
+    background: #f8f7f4;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.add-meal-card {
+    width: 100%;
+    max-width: 560px;
+
+    padding: 42px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 35px rgba(43, 33, 28, 0.06);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.add-meal-header {
+    margin-bottom: 30px;
+}
+
+.back-button {
+    padding: 0;
+    margin-bottom: 24px;
+
+    border: none;
+    background: transparent;
+
+    color: #8a817b;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.back-button:hover {
+    color: #5b2f13;
+}
+
+.add-meal-title h1 {
+    margin: 0 0 8px;
+
+    color: #2b211c;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+}
+
+.add-meal-title p {
+    margin: 0;
+
+    color: #8a817b;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.add-meal-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 0;
+}
+
+.form-group label {
+    color: #3a302b;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.form-group input {
+    width: 100%;
+    height: 46px;
+
+    box-sizing: border-box;
+
+    padding: 0 14px;
+
+    border: 1px solid #ddd8d3;
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #fdfcfb;
+
+    color: #2b211c;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #aaa29c;
+}
+
+.form-group input:focus {
+    background: #ffffff;
+
+    border-color: #5b2f13;
+
+    box-shadow:
+        0 0 0 3px rgba(91, 47, 19, 0.08);
+}
+
+
+/* =========================
+   INPUT WITH UNIT
+========================= */
+
+.input-with-unit {
+    position: relative;
+    width: 100%;
+}
+
+.input-with-unit input {
+    padding-right: 55px;
+}
+
+.input-with-unit span {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #99918b;
+
+    font-size: 13px;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MACRO SECTION
+========================= */
+
+.macro-input-section {
+    margin-top: 4px;
+
+    padding: 20px;
+
+    background: #faf8f6;
+
+    border-radius: 16px;
+}
+
+.macro-input-section h2 {
+    margin: 0 0 4px;
+
+    color: #3a302b;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.macro-input-section > p {
+    margin: 0 0 18px;
+
+    color: #99918b;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MACRO INPUT GRID
+========================= */
+
+.macro-input-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+.macro-input-grid .form-group {
+    min-width: 0;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.meal-error {
+    margin-bottom: 20px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    background: #faf1ed;
+
+    color: #9b4b2e;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.add-meal-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+.cancel-button,
+.add-meal-submit {
+    height: 48px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease,
+        opacity 0.2s ease;
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+.cancel-button {
+    flex: 1;
+
+    border: 1px solid #ddd8d3;
+
+    background: #ffffff;
+
+    color: #6f6660;
+}
+
+.cancel-button:hover {
+    background: #f8f7f4;
+}
+
+.cancel-button:active {
+    transform: scale(0.99);
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+.add-meal-submit {
+    flex: 2;
+
+    border: none;
+
+    background: #5b2f13;
+
+    color: #ffffff;
+}
+
+.add-meal-submit:hover {
+    background: #47230e;
+}
+
+.add-meal-submit:active {
+    transform: scale(0.99);
+}
+
+.add-meal-submit:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .add-meal-page {
+        align-items: flex-start;
+
+        padding: 24px 16px;
+    }
+
+    .add-meal-card {
+        padding: 30px 24px;
+
+        border-radius: 20px;
+    }
+
+    .add-meal-title h1 {
+        font-size: 25px;
+    }
+
+    .macro-input-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .add-meal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .add-meal-submit {
+        width: 100%;
+    }
+}
