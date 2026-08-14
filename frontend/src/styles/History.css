@@ -1,0 +1,455 @@
+/* =========================
+   HISTORY PAGE
+========================= */
+
+.history-page {
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 50px 24px;
+
+    box-sizing: border-box;
+
+    background: #f8f7f4;
+}
+
+.history-container {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.history-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 36px;
+}
+
+.history-eyebrow {
+    margin: 0 0 5px;
+
+    color: #5b2f13;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.history-header h1 {
+    margin: 0 0 7px;
+
+    color: #2b211c;
+
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+.history-subtitle {
+    margin: 0;
+
+    color: #8a817b;
+
+    font-size: 14px;
+}
+
+.back-button {
+    padding: 10px 16px;
+
+    border: 1px solid #ddd8d3;
+    border-radius: 10px;
+
+    background: white;
+
+    color: #5b2f13;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background: #f4eee9;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.history-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 70px 30px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 30px rgba(43, 33, 28, 0.05);
+}
+
+.history-empty-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 16px;
+
+    background: #f4eee9;
+
+    font-size: 26px;
+}
+
+.history-empty h2 {
+    margin: 0 0 7px;
+
+    color: #2b211c;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.history-empty p {
+    margin: 0 0 22px;
+
+    color: #8a817b;
+
+    font-size: 14px;
+}
+
+.history-primary-button {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: #5b2f13;
+    color: white;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   HISTORY DAY
+========================= */
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.history-day {
+    padding: 24px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 30px rgba(43, 33, 28, 0.05);
+}
+
+
+/* =========================
+   DAY HEADER
+========================= */
+
+.history-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #eee9e5;
+}
+
+.history-day-header h2 {
+    margin: 0 0 5px;
+
+    color: #2b211c;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.history-day-header span {
+    color: #9a928d;
+
+    font-size: 12px;
+}
+
+.daily-calories {
+    display: flex;
+    align-items: baseline;
+
+    gap: 4px;
+
+    color: #8a817b;
+
+    white-space: nowrap;
+}
+
+.daily-calories strong {
+    color: #5b2f13;
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.daily-calories span {
+    font-size: 12px;
+}
+
+
+/* =========================
+   DAILY SUMMARY
+========================= */
+
+.history-summary {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+
+    padding: 18px 0;
+}
+
+.history-summary-item {
+    padding: 13px;
+
+    border-radius: 12px;
+
+    background: #f8f7f4;
+}
+
+.history-summary-item span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8a817b;
+
+    font-size: 11px;
+}
+
+.history-summary-item strong {
+    color: #3a302b;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   MEALS
+========================= */
+
+.history-meals {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1px;
+
+    overflow: hidden;
+
+    border: 1px solid #eee9e5;
+
+    border-radius: 13px;
+}
+
+.history-meal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px;
+
+    background: white;
+
+    border-bottom: 1px solid #eee9e5;
+}
+
+.history-meal:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================
+   MEAL INFO
+========================= */
+
+.meal-info {
+    min-width: 0;
+}
+
+.meal-info h3 {
+    margin: 0 0 4px;
+
+    overflow: hidden;
+
+    color: #3a302b;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.meal-info span {
+    color: #9a928d;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MEAL MACROS
+========================= */
+
+.meal-macros {
+    display: flex;
+
+    gap: 22px;
+}
+
+.meal-macros > div {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+}
+
+.meal-macros strong {
+    color: #3a302b;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.meal-macros span {
+    margin-top: 2px;
+
+    color: #aaa29c;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.history-loading {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8f7f4;
+
+    color: #8a817b;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .history-page {
+        padding: 32px 16px;
+    }
+
+    .history-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .history-header h1 {
+        font-size: 29px;
+    }
+
+    .back-button {
+        width: 100%;
+    }
+
+    .history-day {
+        padding: 18px;
+    }
+
+    .history-day-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .daily-calories {
+        align-self: flex-start;
+    }
+
+    .history-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .history-meal {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .meal-macros {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+    .meal-macros > div {
+        align-items: flex-start;
+    }
+}
