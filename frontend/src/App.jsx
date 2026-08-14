@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import AddUser from "./pages/AddUser";
-import AddMeal from "./pages/AddMeal"
+import AddMeal from "./pages/AddMeal";
+import History from "./pages/History";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -25,6 +26,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/add-meal" element={<AddMeal />} />
+        <Route path="/history" element={<History />}/>
       </Routes>
     </BrowserRouter>
   );

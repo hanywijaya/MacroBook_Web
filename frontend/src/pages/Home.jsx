@@ -25,10 +25,6 @@ function Home() {
                 Authorization: `Bearer ${session.access_token}`,
             };
 
-            // =========================
-            // FETCH USER
-            // =========================
-
             const userResponse = await fetch(
                 "http://127.0.0.1:8000/api/users/me",
                 {
@@ -51,11 +47,6 @@ function Home() {
             console.log("User:", userData);
 
             setUser(userData);
-
-
-            // =========================
-            // FETCH MEALS
-            // =========================
 
             const mealsResponse = await fetch(
                 "http://127.0.0.1:8000/api/meals/",
@@ -82,30 +73,15 @@ function Home() {
         }
     };
 
-
-    // =========================
-    // LOGOUT
-    // =========================
-
     const handleLogout = async () => {
         await supabase.auth.signOut();
 
         navigate("/login");
     };
 
-
-    // =========================
-    // FETCH DATA ON LOAD
-    // =========================
-
     useEffect(() => {
         fetchData();
     }, []);
-
-
-    // =========================
-    // TODAY'S MEALS
-    // =========================
 
     const today = new Date();
 
@@ -119,10 +95,6 @@ function Home() {
         );
     });
 
-
-    // =========================
-    // CALCULATE TOTALS
-    // =========================
 
     const todayCalories = todaysMeals.reduce(
         (total, meal) => total + Number(meal.calories),
@@ -358,6 +330,13 @@ function Home() {
                     <div className="section-header">
 
                         <h2>Today's Meals</h2>
+
+                        <button
+                            className="history-button"
+                            onClick={() => navigate("/history")}
+                        >
+                            History
+                        </button>
 
                         <button
                             className="add-meal-button"
