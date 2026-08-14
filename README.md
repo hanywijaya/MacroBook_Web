@@ -1,7 +1,7 @@
 # MacroBook 🍽️
 
 A simple macro tracking web application for tracking daily calories and macronutrient intake. 
-Can be accessed through [this link](macro-book-web-gamma.vercel.app).
+Can be accessed through [this link](https://macro-book-web-gamma.vercel.app).
 
 MacroBook helps users keep track of what they eat, monitor their daily nutrition goals, and eventually understand their calorie deficit and progress over time.
 
