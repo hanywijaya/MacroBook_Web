@@ -26,7 +26,7 @@ function Home() {
             };
 
             const userResponse = await fetch(
-                "http://127.0.0.1:8000/api/users/me",
+                "/api/users/me",
                 {
                     method: "GET",
                     headers,
