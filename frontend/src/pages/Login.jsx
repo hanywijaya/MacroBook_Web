@@ -25,27 +25,44 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         setError("");
+    
+        if (!formData.email.trim()) {
+            setError("Please enter your email.");
+            return;
+        }
+    
+        if (!formData.password) {
+            setError("Please enter your password.");
+            return;
+        }
+    
         setLoading(true);
-
+    
         try {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: formData.email,
                 password: formData.password,
             });
-
+    
             if (error) {
-                throw error;
+                if (error.message === "Invalid login credentials") {
+                    setError("Incorrect email or password.");
+                } else if (error.message === "Email not confirmed") {
+                    setError("Please verify your email before logging in.");
+                } else {
+                    setError("Unable to log in. Please try again.");
+                }
+    
+                return;
             }
-
-            console.log("Logged in user:", data.user);
-
+    
             navigate("/");
-
+    
         } catch (error) {
             console.error("Login error:", error);
-            setError(error.message);
+            setError("Something went wrong. Please try again.");
         } finally {
             setLoading(false);
         }

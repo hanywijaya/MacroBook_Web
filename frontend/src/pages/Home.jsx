@@ -8,6 +8,7 @@ function Home() {
 
     const [user, setUser] = useState(null);
     const [meals, setMeals] = useState([]);
+    const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
@@ -66,6 +67,24 @@ function Home() {
 
             setMeals(mealsData);
 
+            const activitiesResponse = await fetch(
+                "/api/activities/",
+                {
+                    method: "GET",
+                    headers,
+                }
+            );
+
+            if (!activitiesResponse.ok) {
+                throw new Error("Failed to fetch activities");
+            }
+
+            const activitiesData = await activitiesResponse.json();
+
+            console.log("Activities:", activitiesData);
+
+            setActivities(activitiesData);
+
         } catch (error) {
             console.error("Error:", error);
         } finally {
@@ -95,11 +114,45 @@ function Home() {
         );
     });
 
+    const todaysActivities = activities.filter((activity) => {
+        const activityDate = new Date(activity.time);
+
+        return (
+            activityDate.getFullYear() === today.getFullYear() &&
+            activityDate.getMonth() === today.getMonth() &&
+            activityDate.getDate() === today.getDate()
+        );
+    });
+
+    const todaysLogs = [
+        ...todaysMeals.map((meal) => ({
+            ...meal,
+            type: "meal",
+            timestamp: meal.time,
+        })),
+
+        ...todaysActivities.map((activity) => ({
+            ...activity,
+            type: "activity",
+            timestamp: activity.time,
+        })),
+    ].sort(
+        (a, b) =>
+            new Date(a.timestamp) - new Date(b.timestamp)
+    );
 
     const todayCalories = todaysMeals.reduce(
         (total, meal) => total + Number(meal.calories),
         0
     );
+
+    const todayCaloriesBurned = todaysActivities.reduce(
+        (total, activity) =>
+            total + Number(activity.calories_burned),
+        0
+    );
+
+    const netCalories = todayCalories - todayCaloriesBurned;
 
     const todayCarbs = todaysMeals.reduce(
         (total, meal) => total + Number(meal.carbs),
@@ -123,7 +176,6 @@ function Home() {
             </div>
         );
     }
-
 
     if (!user) {
         return null;
@@ -163,11 +215,12 @@ function Home() {
               )
             : 0;
 
-
     return (
         <div className="home-page">
 
             <div className="home-container">
+
+                {/* Header */}
 
                 <header className="home-header">
 
@@ -190,24 +243,58 @@ function Home() {
 
                 </header>
 
+
+                {/* Quick Actions */}
+
+                <div className="quick-actions">
+
+                    <button
+                        className="quick-action add-meal-button"
+                        onClick={() => navigate("/add-meal")}
+                    >
+                        <span className="quick-action-icon">
+                            ＋
+                        </span>
+
+                        Add Meal
+                    </button>
+
+                    <button
+                        className="quick-action add-activity-button"
+                        onClick={() => navigate("/add-activity")}
+                    >
+                        <span className="quick-action-icon">
+                            ＋
+                        </span>
+
+                        Add Activity
+                    </button>
+
+                </div>
+
+
+                {/* Calories */}
+
                 <section className="calorie-card">
 
                     <div className="card-title">
-                        <span>Today's Calories</span>
+                        Net calories today
                     </div>
 
                     <div className="calorie-content">
 
                         <div className="calorie-number">
+
                             <strong>
-                                {Math.round(todayCalories)}
+                                {Math.round(netCalories)}
                             </strong>
 
                             <span>
-                                {" "}
-                                / {user.maintenance} kcal
+                                kcal
                             </span>
+
                         </div>
+
 
                         <div className="progress-bar">
 
@@ -220,37 +307,76 @@ function Home() {
 
                         </div>
 
+
                         <p className="remaining-calories">
 
                             {Math.max(
-                                calorieGoal - todayCalories,
+                                calorieGoal - netCalories,
                                 0
                             ).toFixed(0)}{" "}
                             kcal remaining
 
                         </p>
 
+
+                        <div className="calorie-summary">
+
+                            <div className="calorie-summary-item">
+                                <strong>
+                                    {Math.round(todayCalories)}
+                                </strong>
+
+                                <span>
+                                    kcal intake
+                                </span>
+                            </div>
+
+                            <div className="calorie-summary-item">
+                                <strong>
+                                    {Math.round(todayCaloriesBurned)}
+                                </strong>
+
+                                <span>
+                                    kcal burned
+                                </span>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </section>
 
 
+                {/* Macros */}
+
                 <section className="macro-section">
 
                     <div className="section-header">
-                        <h2>Today's Macros</h2>
+
+                        <h2>
+                            Today's Macros
+                        </h2>
+
                     </div>
 
+
                     <div className="macro-grid">
+
+                        {/* Carbs */}
 
                         <div className="macro-card">
 
                             <div className="macro-card-header">
-                                <span>Carbs</span>
+
+                                <span>
+                                    Carbs
+                                </span>
 
                                 <span>
                                     {Math.round(todayCarbs)}g
                                 </span>
+
                             </div>
 
                             <div className="macro-progress">
@@ -269,14 +395,21 @@ function Home() {
 
                         </div>
 
+
+                        {/* Protein */}
+
                         <div className="macro-card">
 
                             <div className="macro-card-header">
-                                <span>Protein</span>
+
+                                <span>
+                                    Protein
+                                </span>
 
                                 <span>
                                     {Math.round(todayProtein)}g
                                 </span>
+
                             </div>
 
                             <div className="macro-progress">
@@ -295,14 +428,21 @@ function Home() {
 
                         </div>
 
+
+                        {/* Fat */}
+
                         <div className="macro-card">
 
                             <div className="macro-card-header">
-                                <span>Fat</span>
+
+                                <span>
+                                    Fat
+                                </span>
 
                                 <span>
                                     {Math.round(todayFat)}g
                                 </span>
+
                             </div>
 
                             <div className="macro-progress">
@@ -325,146 +465,205 @@ function Home() {
 
                 </section>
 
-                <section className="meals-section">
 
-                    <div className="section-header">
+                {/* Today's Logs */}
 
-                        <div className="meals-title">
-                            <h2>Today's Meals</h2>
+                <section className="logs-section">
 
-                            <button
-                                className="history-button"
-                                onClick={() => navigate("/history")}
-                            >
-                                View history →
-                            </button>
-                        </div>
+                    <div className="logs-header">
+
+                        <h2>
+                            Today's Logs
+                        </h2>
 
                         <button
-                            className="add-meal-button"
-                            onClick={() =>
-                                navigate("/add-meal")
-                            }
+                            className="history-button"
+                            onClick={() => navigate("/history")}
                         >
-                            + Add Meal
+                            View History →
                         </button>
 
                     </div>
 
-                    {todaysMeals.length === 0 ? (
 
-                        <div className="empty-meals">
+                    {todaysLogs.length === 0 ? (
+
+                        <div className="empty-logs">
 
                             <div className="empty-icon">
-                                🍽️
+                                📝
                             </div>
 
                             <h3>
-                                No meals logged yet
+                                No logs yet
                             </h3>
 
                             <p>
-                                Start tracking what you eat today.
+                                Start tracking your meals and
+                                activities today.
                             </p>
-
-                            <button
-                                className="primary-button"
-                                onClick={() =>
-                                    navigate("/add-meal")
-                                }
-                            >
-                                Add your first meal
-                            </button>
 
                         </div>
 
                     ) : (
 
-                        <div className="meal-list">
+                        <div className="log-list">
 
-                            {todaysMeals.map((meal) => (
+                            {todaysLogs.map((log) => {
 
-                                <div
-                                    className="meal-card"
-                                    key={meal.id}
-                                >
+                                const isMeal =
+                                    log.type === "meal";
 
-                                    <div className="meal-info">
+                                return (
+                                    <div
+                                        className={`log-card ${log.type}`}
+                                        key={`${log.type}-${log.id}`}
+                                    >
 
-                                        <h3>
-                                            {meal.title}
-                                        </h3>
+                                        {/* Icon */}
 
-                                        <p>
-                                            {new Date(
-                                                meal.time
-                                            ).toLocaleTimeString(
-                                                [],
-                                                {
+                                        <div className="log-icon">
+
+                                            {isMeal
+                                                ? "🍴"
+                                                : "🏃"}
+
+                                        </div>
+
+
+                                        {/* Log Information */}
+
+                                        <div className="log-info">
+
+                                            <p className="log-time">
+
+                                                {new Date(
+                                                    log.timestamp
+                                                ).toLocaleTimeString([], {
                                                     hour: "2-digit",
                                                     minute: "2-digit",
-                                                }
+                                                })}
+
+                                            </p>
+
+
+                                            <h3>
+                                                {log.title}
+                                            </h3>
+
+
+                                            <div className="log-type">
+
+                                                {isMeal
+                                                    ? "Intake"
+                                                    : "Activity Burn"}
+
+                                            </div>
+
+
+                                            {/* Meal macros */}
+
+                                            {isMeal && (
+
+                                                <div className="log-macros">
+
+                                                    <div className="log-macro">
+
+                                                        <strong>
+                                                            {Math.round(
+                                                                Number(
+                                                                    log.carbs
+                                                                )
+                                                            )}g
+                                                        </strong>
+
+                                                        <span>
+                                                            Carbs
+                                                        </span>
+
+                                                    </div>
+
+
+                                                    <div className="log-macro">
+
+                                                        <strong>
+                                                            {Math.round(
+                                                                Number(
+                                                                    log.protein
+                                                                )
+                                                            )}g
+                                                        </strong>
+
+                                                        <span>
+                                                            Protein
+                                                        </span>
+
+                                                    </div>
+
+
+                                                    <div className="log-macro">
+
+                                                        <strong>
+                                                            {Math.round(
+                                                                Number(
+                                                                    log.fat
+                                                                )
+                                                            )}g
+                                                        </strong>
+
+                                                        <span>
+                                                            Fat
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
                                             )}
-                                        </p>
-
-                                    </div>
 
 
-                                    <div className="meal-nutrition">
+                                            {log.note && (
 
-                                        <div>
+                                                <span className="log-note">
+                                                    {log.note}
+                                                </span>
+
+                                            )}
+
+                                        </div>
+
+
+                                        {/* Calories */}
+
+                                        <div className="log-calories">
+
                                             <strong>
+
+                                                {isMeal
+                                                    ? "+"
+                                                    : "−"}
+
                                                 {Math.round(
-                                                    meal.calories
+                                                    isMeal
+                                                        ? Number(
+                                                              log.calories
+                                                          )
+                                                        : Number(
+                                                              log.calories_burned
+                                                          )
                                                 )}
+
                                             </strong>
 
                                             <span>
                                                 kcal
                                             </span>
-                                        </div>
 
-                                        <div>
-                                            <strong>
-                                                {Math.round(
-                                                    meal.carbs
-                                                )}g
-                                            </strong>
-
-                                            <span>
-                                                carbs
-                                            </span>
-                                        </div>
-
-                                        <div>
-                                            <strong>
-                                                {Math.round(
-                                                    meal.protein
-                                                )}g
-                                            </strong>
-
-                                            <span>
-                                                protein
-                                            </span>
-                                        </div>
-
-                                        <div>
-                                            <strong>
-                                                {Math.round(
-                                                    meal.fat
-                                                )}g
-                                            </strong>
-
-                                            <span>
-                                                fat
-                                            </span>
                                         </div>
 
                                     </div>
-
-                                </div>
-
-                            ))}
+                                );
+                            })}
 
                         </div>
 

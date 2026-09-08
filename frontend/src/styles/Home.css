@@ -1,7 +1,7 @@
 .home-page {
     min-height: 100vh;
     background: #f8f7f4;
-    padding: 40px 20px;
+    padding: 40px 24px 80px;
 }
 
 .home-container {
@@ -10,33 +10,43 @@
     margin: 0 auto;
 }
 
-/* Header */
+
+/* =========================
+   Header
+   ========================= */
 
 .home-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
+    align-items: flex-start;
+    margin-bottom: 24px;
 }
 
 .home-greeting {
-    margin: 0 0 4px;
+    margin: 0 0 5px;
+
     color: #8a817b;
     font-size: 14px;
 }
 
 .home-header h1 {
     margin: 0;
+
     color: #2b211c;
     font-size: 30px;
     font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
 .logout-button {
     border: none;
     background: transparent;
+    padding: 6px 0;
+
     color: #777;
+    font-family: inherit;
     font-size: 14px;
+
     cursor: pointer;
 }
 
@@ -45,30 +55,93 @@
 }
 
 
-/* Calorie Card */
+/* =========================
+   Quick Actions
+   ========================= */
+
+.quick-actions {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.quick-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 11px 18px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.quick-action:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.add-meal-button {
+    background: #5b2f13;
+    color: white;
+}
+
+.add-activity-button {
+    background: #e9e3de;
+    color: #5b2f13;
+}
+
+.quick-action-icon {
+    font-size: 17px;
+    line-height: 1;
+}
+
+
+/* =========================
+   Calorie Card
+   ========================= */
 
 .calorie-card {
-    padding: 28px;
-    margin-bottom: 24px;
+    position: relative;
+
+    padding: 28px 30px;
+    margin-bottom: 34px;
 
     background: white;
-    border-radius: 20px;
+    border-radius: 22px;
 
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
 }
 
 .card-title {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 
-    color: #5b514b;
-    font-size: 14px;
-    font-weight: 500;
+    color: #68615d;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.calorie-content {
+    display: flex;
+    flex-direction: column;
 }
 
 .calorie-number {
     display: flex;
     align-items: baseline;
-    gap: 5px;
+    gap: 6px;
 
     margin-bottom: 18px;
 }
@@ -77,6 +150,7 @@
     color: #2b211c;
     font-size: 42px;
     font-weight: 600;
+    letter-spacing: -1px;
 }
 
 .calorie-number span {
@@ -86,78 +160,95 @@
 
 .progress-bar {
     width: 100%;
-    height: 10px;
+    height: 9px;
 
     overflow: hidden;
 
     background: #eee9e5;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .progress-fill {
     height: 100%;
 
     background: #5b2f13;
-    border-radius: 10px;
+    border-radius: 20px;
 
     transition: width 0.3s ease;
 }
 
 .remaining-calories {
-    margin: 12px 0 0;
+    margin: 11px 0 0;
 
     color: #8a817b;
     font-size: 13px;
 }
 
 
-/* Macros */
+/* Net calorie information */
+
+.calorie-summary {
+    display: flex;
+    gap: 20px;
+
+    margin-top: 14px;
+}
+
+.calorie-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #777;
+    font-size: 13px;
+}
+
+.calorie-summary-item strong {
+    color: #3a302b;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Macros
+   ========================= */
 
 .macro-section {
-    margin-bottom: 30px;
+    margin-bottom: 38px;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 
     margin-bottom: 16px;
-}
-
-.meals-title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-}
-
-.meals-title h2 {
-    margin: 0;
-}
-
-.history-button {
-    border: none;
-    background: none;
-    padding: 0;
-
-    color: #6b371c;
-    font-size: 15px;
-    font-weight: 500;
-
-    cursor: pointer;
-}
-
-.history-button:hover {
-    text-decoration: underline;
 }
 
 .section-header h2 {
     margin: 0;
 
     color: #2b211c;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+.edit-goals-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    color: #5b2f13;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.edit-goals-button:hover {
+    text-decoration: underline;
 }
 
 .macro-grid {
@@ -213,25 +304,227 @@
 }
 
 
-/* Meals */
+/* =========================
+   Logs
+   ========================= */
 
-.meals-section {
-    margin-top: 30px;
+.logs-section {
+    margin-top: 10px;
 }
 
-.add-meal-button {
+.logs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+
+.logs-header h2 {
+    margin: 0;
+
+    color: #2b211c;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.history-button {
     border: none;
     background: transparent;
+    padding: 0;
 
     color: #5b2f13;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 500;
 
     cursor: pointer;
 }
 
-.empty-meals {
-    padding: 45px 20px;
+.history-button:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   Log List
+   ========================= */
+
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* Individual Log */
+
+.log-card {
+    display: flex;
+    align-items: flex-start;
+
+    padding: 18px 20px;
+
+    background: white;
+
+    border: 1px solid #eee9e5;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 16px rgba(43, 33, 28, 0.035);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.log-card:hover {
+    box-shadow: 0 7px 22px rgba(43, 33, 28, 0.07);
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Log Icon
+   ========================= */
+
+.log-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 15px;
+
+    background: #f3eee8;
+    border-radius: 50%;
+
+    color: #5b2f13;
+    font-size: 20px;
+}
+
+
+/* Activity icon */
+
+.log-card.activity .log-icon {
+    background: #eee9e2;
+}
+
+
+/* =========================
+   Log Main Content
+   ========================= */
+
+.log-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.log-time {
+    margin: 0 0 3px;
+
+    color: #99918b;
+    font-size: 12px;
+}
+
+.log-info h3 {
+    margin: 0;
+
+    color: #2b211c;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.log-type {
+    margin-top: 5px;
+
+    color: #77716d;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   Meal Macros
+   ========================= */
+
+.log-macros {
+    display: flex;
+    gap: 22px;
+
+    margin-top: 14px;
+    padding-top: 12px;
+
+    border-top: 1px solid #eee9e5;
+}
+
+.log-macro {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.log-macro strong {
+    color: #3a302b;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.log-macro span {
+    color: #aaa29c;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   Log Calories
+   ========================= */
+
+.log-calories {
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    margin-left: 20px;
+}
+
+.log-calories strong {
+    color: #3a302b;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.log-calories span {
+    margin-top: 3px;
+
+    color: #999;
+
+    font-size: 11px;
+}
+
+
+/* Activity = negative calories */
+
+.log-card.activity .log-calories strong {
+    color: #5b2f13;
+}
+
+
+/* =========================
+   Empty Logs
+   ========================= */
+
+.empty-logs {
+    padding: 48px 20px;
 
     text-align: center;
 
@@ -243,118 +536,31 @@
 
 .empty-icon {
     margin-bottom: 12px;
+
     font-size: 32px;
 }
 
-.empty-meals h3 {
-    margin: 0 0 6px;
+.empty-logs h3 {
+    margin: 0 0 7px;
 
     color: #3a302b;
+
     font-size: 16px;
     font-weight: 600;
 }
 
-.empty-meals p {
-    margin: 0 0 20px;
-
-    color: #99908a;
-    font-size: 13px;
-}
-
-.primary-button {
-    padding: 11px 20px;
-
-    border: none;
-    border-radius: 10px;
-
-    background: #5b2f13;
-    color: white;
-
-    font-size: 13px;
-    font-weight: 500;
-
-    cursor: pointer;
-}
-
-.primary-button:hover {
-    opacity: 0.9;
-}
-
-.meal-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.meal-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 18px 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #eee9e5;
-    border-radius: 16px;
-
-    transition:
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-.meal-card:hover {
-    box-shadow: 0 6px 20px rgba(43, 33, 28, 0.06);
-
-    transform: translateY(-1px);
-}
-
-.meal-info h3 {
-    margin: 0 0 5px;
-
-    color: #2b211c;
-
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.meal-info p {
+.empty-logs p {
     margin: 0;
 
-    color: #99918b;
-
-    font-size: 12px;
-}
-
-
-.meal-nutrition {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-}
-
-.meal-nutrition div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
-}
-
-.meal-nutrition strong {
-    color: #3a302b;
+    color: #99908a;
 
     font-size: 13px;
-    font-weight: 600;
-}
-
-.meal-nutrition span {
-    color: #aaa29c;
-
-    font-size: 10px;
 }
 
 
-/* Loading */
+/* =========================
+   Loading
+   ========================= */
 
 .home-loading {
     min-height: 100vh;
@@ -369,39 +575,77 @@
 }
 
 
-/* Mobile */
+/* =========================
+   Mobile
+   ========================= */
 
 @media (max-width: 700px) {
+
     .home-page {
-        padding: 25px 16px;
+        padding: 25px 16px 70px;
+    }
+
+    .home-header {
+        margin-bottom: 20px;
     }
 
     .home-header h1 {
         font-size: 25px;
     }
 
-    .macro-grid {
-        grid-template-columns: 1fr;
+    .quick-actions {
+        width: 100%;
+    }
+
+    .quick-action {
+        flex: 1;
+        padding: 11px 10px;
+    }
+
+    .calorie-card {
+        padding: 23px 20px;
+        border-radius: 20px;
     }
 
     .calorie-number strong {
         font-size: 36px;
     }
 
-    .meal-card {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 16px;
+    .calorie-summary {
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
-    .meal-nutrition {
-        width: 100%;
-        justify-content: space-between;
-        gap: 10px;
+    .macro-grid {
+        grid-template-columns: 1fr;
     }
 
-    .meal-nutrition div {
-        align-items: flex-start;
+    .log-card {
+        padding: 16px;
+    }
+
+    .log-icon {
+        width: 42px;
+        height: 42px;
+
+        margin-right: 12px;
+
+        font-size: 18px;
+    }
+
+    .log-info h3 {
+        font-size: 15px;
+    }
+
+    .log-calories {
+        margin-left: 10px;
+    }
+
+    .log-calories strong {
+        font-size: 15px;
+    }
+
+    .log-macros {
+        gap: 14px;
     }
 }
-

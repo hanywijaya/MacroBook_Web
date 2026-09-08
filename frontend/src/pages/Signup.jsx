@@ -33,24 +33,63 @@ function Signup() {
             ...prev,
             [name]: value,
         }));
+
+        // Remove error once user starts correcting the form
+        if (error) {
+            setError("");
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setError("");
+
+        // -------------------------
+        // Client-side validation
+        // -------------------------
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        if (formData.password.length < 8) {
+            setError("Password must be at least 8 characters.");
+            return;
+        }
+
+        if (!formData.gender) {
+            setError("Please select your gender.");
+            return;
+        }
+
+        if (Number(formData.age) <= 0) {
+            setError("Please enter a valid age.");
+            return;
+        }
+
+        if (Number(formData.height) <= 0) {
+            setError("Please enter a valid height.");
+            return;
+        }
+
+        if (Number(formData.weight) <= 0) {
+            setError("Please enter a valid weight.");
+            return;
+        }
+
+        if (Number(formData.maintenance) <= 0) {
+            setError("Please enter your maintenance calories.");
+            return;
+        }
+
         setLoading(true);
 
         try {
-            if (formData.password !== formData.confirmPassword) {
-                throw new Error("Passwords do not match.");
-            }
-
-            if (formData.password.length < 6) {
-                throw new Error(
-                    "Password must be at least 6 characters."
-                );
-            }
+            // -------------------------
+            // Create Supabase account
+            // -------------------------
 
             const { data: authData, error: authError } =
                 await supabase.auth.signUp({
@@ -59,25 +98,61 @@ function Signup() {
                 });
 
             if (authError) {
-                throw authError;
+                switch (authError.message) {
+                    case "User already registered":
+                        setError(
+                            "An account with this email already exists."
+                        );
+                        break;
+
+                    case "Password should be at least 8 characters":
+                        setError(
+                            "Password must be at least 8 characters."
+                        );
+                        break;
+
+                    case "Unable to validate email address: invalid format":
+                        setError(
+                            "Please enter a valid email address."
+                        );
+                        break;
+
+                    default:
+                        setError(
+                            "Unable to create your account. Please check your details and try again."
+                        );
+                }
+
+                return;
             }
+
+            // -------------------------
+            // Email confirmation
+            // -------------------------
 
             if (!authData.session) {
                 setError(
-                    "Please check your email to confirm your account."
+                    "Your account was created! Please check your email to confirm your account."
                 );
+
                 return;
             }
+
+            // -------------------------
+            // Create user profile
+            // -------------------------
 
             const response = await fetch(
                 "/api/users/",
                 {
                     method: "POST",
+
                     headers: {
                         "Content-Type": "application/json",
                         Authorization:
                             `Bearer ${authData.session.access_token}`,
                     },
+
                     body: JSON.stringify({
                         name: formData.name,
                         age: Number(formData.age),
@@ -104,15 +179,22 @@ function Signup() {
                     JSON.stringify(data, null, 2)
                 );
 
-                throw new Error(
-                    data.detail || "Failed to create profile."
+                setError(
+                    "Your account was created, but we couldn't finish setting up your profile. Please try again."
                 );
+
+                return;
             }
 
             navigate("/");
+
         } catch (error) {
-            console.error(error);
-            setError(error.message);
+            console.error("Signup error:", error);
+
+            setError(
+                "Something went wrong while creating your account. Please try again."
+            );
+
         } finally {
             setLoading(false);
         }
@@ -122,6 +204,10 @@ function Signup() {
         <div className="signup-page">
 
             <div className="signup-container">
+
+                {/* =========================
+                    Left Introduction
+                ========================= */}
 
                 <div className="signup-intro">
 
@@ -150,16 +236,26 @@ function Signup() {
                     </div>
 
                     <div className="intro-footer">
-                        <span>Already have an account?</span>
+
+                        <span>
+                            Already have an account?
+                        </span>
 
                         <button
+                            type="button"
                             onClick={() => navigate("/login")}
                         >
                             Log in
                         </button>
+
                     </div>
 
                 </div>
+
+
+                {/* =========================
+                    Signup Form
+                ========================= */}
 
                 <div className="signup-form-container">
 
@@ -174,8 +270,8 @@ function Signup() {
                         </h2>
 
                         <p>
-                            Tell us a little about yourself
-                            so we can personalize your goals.
+                            A few details will help us
+                            personalize your daily goals.
                         </p>
 
                     </div>
@@ -186,31 +282,39 @@ function Signup() {
                         onSubmit={handleSubmit}
                     >
 
-                        {error && (
-                            <div className="signup-error">
-                                {error}
-                            </div>
-                        )}
+                        {/* =========================
+                            Account
+                        ========================= */}
 
                         <div className="form-section">
 
                             <div className="section-heading">
+
                                 <span className="section-number">
                                     01
                                 </span>
 
                                 <div>
-                                    <h3>Account</h3>
+                                    <h3>
+                                        Account
+                                    </h3>
+
                                     <p>
-                                        Create your account
+                                        Create your login details
                                     </p>
                                 </div>
+
                             </div>
 
+
                             <div className="form-group">
-                                <label>Email</label>
+
+                                <label htmlFor="email">
+                                    Email
+                                </label>
 
                                 <input
+                                    id="email"
                                     name="email"
                                     type="email"
                                     placeholder="you@example.com"
@@ -218,61 +322,89 @@ function Signup() {
                                     onChange={handleChange}
                                     required
                                 />
+
                             </div>
+
 
                             <div className="form-row">
 
                                 <div className="form-group">
-                                    <label>Password</label>
+
+                                    <label htmlFor="password">
+                                        Password
+                                    </label>
 
                                     <input
+                                        id="password"
                                         name="password"
                                         type="password"
-                                        placeholder="••••••••"
+                                        placeholder="At least 6 characters"
                                         value={formData.password}
                                         onChange={handleChange}
                                         required
                                     />
+
                                 </div>
 
+
                                 <div className="form-group">
-                                    <label>Confirm Password</label>
+
+                                    <label htmlFor="confirmPassword">
+                                        Confirm password
+                                    </label>
 
                                     <input
+                                        id="confirmPassword"
                                         name="confirmPassword"
                                         type="password"
-                                        placeholder="••••••••"
+                                        placeholder="Repeat your password"
                                         value={
                                             formData.confirmPassword
                                         }
                                         onChange={handleChange}
                                         required
                                     />
+
                                 </div>
 
                             </div>
 
                         </div>
 
+
+                        {/* =========================
+                            About You
+                        ========================= */}
+
                         <div className="form-section">
 
                             <div className="section-heading">
+
                                 <span className="section-number">
                                     02
                                 </span>
 
                                 <div>
-                                    <h3>About You</h3>
+                                    <h3>
+                                        About You
+                                    </h3>
+
                                     <p>
-                                        Help us understand your body
+                                        Tell us a little about yourself
                                     </p>
                                 </div>
+
                             </div>
 
+
                             <div className="form-group">
-                                <label>Name</label>
+
+                                <label htmlFor="name">
+                                    Name
+                                </label>
 
                                 <input
+                                    id="name"
                                     name="name"
                                     type="text"
                                     placeholder="Your name"
@@ -280,14 +412,20 @@ function Signup() {
                                     onChange={handleChange}
                                     required
                                 />
+
                             </div>
+
 
                             <div className="form-row">
 
                                 <div className="form-group">
-                                    <label>Age</label>
+
+                                    <label htmlFor="age">
+                                        Age
+                                    </label>
 
                                     <input
+                                        id="age"
                                         name="age"
                                         type="number"
                                         placeholder="21"
@@ -296,14 +434,20 @@ function Signup() {
                                         onChange={handleChange}
                                         required
                                     />
+
                                 </div>
 
+
                                 <div className="form-group">
-                                    <label>Gender</label>
+
+                                    <label>
+                                        Gender
+                                    </label>
 
                                     <div className="gender-options">
 
                                         <label className="gender-option">
+
                                             <input
                                                 type="radio"
                                                 name="gender"
@@ -315,10 +459,15 @@ function Signup() {
                                                 onChange={handleChange}
                                             />
 
-                                            <span>Female</span>
+                                            <span>
+                                                Female
+                                            </span>
+
                                         </label>
 
+
                                         <label className="gender-option">
+
                                             <input
                                                 type="radio"
                                                 name="gender"
@@ -330,21 +479,31 @@ function Signup() {
                                                 onChange={handleChange}
                                             />
 
-                                            <span>Male</span>
+                                            <span>
+                                                Male
+                                            </span>
+
                                         </label>
 
                                     </div>
+
                                 </div>
 
                             </div>
 
+
                             <div className="form-row">
 
                                 <div className="form-group">
-                                    <label>Height</label>
+
+                                    <label htmlFor="height">
+                                        Height
+                                    </label>
 
                                     <div className="unit-input">
+
                                         <input
+                                            id="height"
                                             name="height"
                                             type="number"
                                             placeholder="163"
@@ -354,15 +513,25 @@ function Signup() {
                                             required
                                         />
 
-                                        <span>cm</span>
+                                        <span>
+                                            cm
+                                        </span>
+
                                     </div>
+
                                 </div>
 
+
                                 <div className="form-group">
-                                    <label>Weight</label>
+
+                                    <label htmlFor="weight">
+                                        Weight
+                                    </label>
 
                                     <div className="unit-input">
+
                                         <input
+                                            id="weight"
                                             name="weight"
                                             type="number"
                                             placeholder="50"
@@ -373,62 +542,91 @@ function Signup() {
                                             required
                                         />
 
-                                        <span>kg</span>
+                                        <span>
+                                            kg
+                                        </span>
+
                                     </div>
+
                                 </div>
 
                             </div>
 
                         </div>
 
+
+                        {/* =========================
+                            Nutrition Goals
+                        ========================= */}
+
                         <div className="form-section">
 
                             <div className="section-heading">
+
                                 <span className="section-number">
                                     03
                                 </span>
 
                                 <div>
-                                    <h3>Nutrition Goals</h3>
+                                    <h3>
+                                        Nutrition Goals
+                                    </h3>
+
                                     <p>
                                         Set your daily targets
                                     </p>
                                 </div>
+
                             </div>
 
-                            <div className="calorie-input">
 
-                                <div className="form-group">
-                                    <label>
-                                        Maintenance Calories
-                                    </label>
+                            <div className="form-group">
 
-                                    <div className="unit-input">
-                                        <input
-                                            name="maintenance"
-                                            type="number"
-                                            placeholder="1800"
-                                            min="1"
-                                            value={
-                                                formData.maintenance
-                                            }
-                                            onChange={handleChange}
-                                            required
-                                        />
+                                <label htmlFor="maintenance">
+                                    Maintenance calories
+                                </label>
 
-                                        <span>kcal</span>
-                                    </div>
+                                <div className="unit-input">
+
+                                    <input
+                                        id="maintenance"
+                                        name="maintenance"
+                                        type="number"
+                                        placeholder="1800"
+                                        min="1"
+                                        value={
+                                            formData.maintenance
+                                        }
+                                        onChange={handleChange}
+                                        required
+                                    />
+
+                                    <span>
+                                        kcal
+                                    </span>
+
                                 </div>
 
+                                <small className="input-hint">
+                                    Your estimated daily calorie
+                                    maintenance.
+                                </small>
+
                             </div>
+
 
                             <div className="macro-inputs">
 
                                 <div className="form-group">
-                                    <label>Carbs</label>
+
+                                    <label htmlFor="target_carbs">
+                                        Carbs
+                                    </label>
 
                                     <div className="unit-input">
+
                                         <input
+                                            id="target_carbs"
                                             name="target_carbs"
                                             type="number"
                                             placeholder="225"
@@ -440,15 +638,25 @@ function Signup() {
                                             required
                                         />
 
-                                        <span>g</span>
+                                        <span>
+                                            g
+                                        </span>
+
                                     </div>
+
                                 </div>
 
+
                                 <div className="form-group">
-                                    <label>Protein</label>
+
+                                    <label htmlFor="target_protein">
+                                        Protein
+                                    </label>
 
                                     <div className="unit-input">
+
                                         <input
+                                            id="target_protein"
                                             name="target_protein"
                                             type="number"
                                             placeholder="120"
@@ -460,15 +668,25 @@ function Signup() {
                                             required
                                         />
 
-                                        <span>g</span>
+                                        <span>
+                                            g
+                                        </span>
+
                                     </div>
+
                                 </div>
 
+
                                 <div className="form-group">
-                                    <label>Fat</label>
+
+                                    <label htmlFor="target_fat">
+                                        Fat
+                                    </label>
 
                                     <div className="unit-input">
+
                                         <input
+                                            id="target_fat"
                                             name="target_fat"
                                             type="number"
                                             placeholder="60"
@@ -480,13 +698,37 @@ function Signup() {
                                             required
                                         />
 
-                                        <span>g</span>
+                                        <span>
+                                            g
+                                        </span>
+
                                     </div>
+
                                 </div>
 
                             </div>
 
                         </div>
+
+
+                        {/* =========================
+                            Error + Submit
+                        ========================= */}
+
+                        {error && (
+                            <div
+                                className="signup-error"
+                                role="alert"
+                            >
+                                <span className="error-icon">
+                                    !
+                                </span>
+
+                                <span>
+                                    {error}
+                                </span>
+                            </div>
+                        )}
 
 
                         <button
@@ -498,6 +740,7 @@ function Signup() {
                                 ? "Creating your account..."
                                 : "Create my account →"}
                         </button>
+
 
                         <p className="terms">
                             By creating an account, you agree to
