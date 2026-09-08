@@ -1,0 +1,156 @@
+.add-activity-page {
+    min-height: 100vh;
+    background: #faf9f7;
+    padding: 40px 20px;
+}
+
+.add-activity-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.back-button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 30px;
+
+    font-family: inherit;
+    font-size: 15px;
+    color: #5b2f13;
+
+    cursor: pointer;
+}
+
+.add-activity-header {
+    margin-bottom: 30px;
+}
+
+.add-activity-header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: #2d241f;
+}
+
+.add-activity-header p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+.add-activity-form {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d332d;
+}
+
+.form-group label span {
+    font-weight: 400;
+    color: #999;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 12px 14px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #5b2f13;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.input-with-unit {
+    position: relative;
+}
+
+.input-with-unit input {
+    padding-right: 60px;
+}
+
+.input-with-unit span {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #888;
+    font-size: 14px;
+}
+
+.form-error {
+    margin: -5px 0 18px;
+    color: #c0392b;
+    font-size: 14px;
+}
+
+.submit-activity-button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+
+    padding: 14px;
+
+    background: #5b2f13;
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submit-activity-button:hover {
+    opacity: 0.9;
+}
+
+.submit-activity-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .add-activity-page {
+        padding: 25px 15px;
+    }
+
+    .add-activity-form {
+        padding: 22px;
+    }
+
+    .add-activity-header h1 {
+        font-size: 28px;
+    }
+}

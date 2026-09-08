@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import AddUser from "./pages/AddUser";
 import AddMeal from "./pages/AddMeal";
 import History from "./pages/History";
+import AddActivity from "./pages/AddActivity";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/add-meal" element={<AddMeal />} />
+        <Route path="/add-activity" element={<AddActivity />} />
         <Route path="/history" element={<History />}/>
       </Routes>
     </BrowserRouter>
