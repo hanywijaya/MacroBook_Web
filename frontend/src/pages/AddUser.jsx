@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/AddUser.css";
+import { supabase } from "../lib/supabase";
 
 function AddUser() {
     const [formData, setFormData] = useState({
@@ -25,42 +26,54 @@ function AddUser() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const userData = {
-            name: formData.name,
-            age: Number(formData.age),
-            gender: formData.gender,
-            height: Number(formData.height),
-            weight: Number(formData.weight),
-            maintenance: Number(formData.maintenance),
-            targetCarbs: Number(formData.targetCarbs),
-            targetProtein: Number(formData.targetProtein),
-            targetFat: Number(formData.targetFat),
-        };
-
+    
         try {
-            const response = await fetch("/api/users", {
+            const {
+                data: { session },
+            } = await supabase.auth.getSession();
+    
+            if (!session) {
+                console.error("No active session");
+                return;
+            }
+    
+            const userData = {
+                name: formData.name,
+                age: Number(formData.age),
+                gender: formData.gender,
+                height: Number(formData.height),
+                weight: Number(formData.weight),
+                maintenance: Number(formData.maintenance),
+                target_carbs: Number(formData.targetCarbs),
+                target_protein: Number(formData.targetProtein),
+                target_fat: Number(formData.targetFat),
+            };
+    
+            const response = await fetch("/api/users/", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${session.access_token}`,
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify(userData),
             });
-
-            console.log(response)
-
-            if(!response.ok) {
+    
+            console.log(response);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Backend error:", errorData);
                 throw new Error("Failed to create new user!");
             }
-
+    
             const data = await response.json();
-
-            console.log("User created: ", data);
-
-        } catch(error) {
-            console.error("Error creating user", error);
+    
+            console.log("User created:", data);
+    
+        } catch (error) {
+            console.error("Error creating user:", error);
         }
-    }
+    };
 
     return (
         <div className="add-user-page">

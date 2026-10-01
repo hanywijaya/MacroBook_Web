@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -17,11 +17,28 @@ def get_users():
         "message": "Get users"
     }
 
+# @router.get("/me", response_model=UserResponse)
+# def get_my_profile(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+#     user = db.query(User).filter(
+#         User.id == current_user["sub"]
+#     ).first()
+
+#     return user
+
 @router.get("/me", response_model=UserResponse)
-def get_my_profile(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+def get_my_profile(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user)
+):
     user = db.query(User).filter(
         User.id == current_user["sub"]
     ).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User profile not found"
+        )
 
     return user
 
